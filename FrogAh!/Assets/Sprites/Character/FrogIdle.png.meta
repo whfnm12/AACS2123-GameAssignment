@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 924278aad91cb6548b6a2a0ea293fdc4
+guid: 696f174a0bf3ded4dbda51ea337e9d88
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -44,10 +44,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 50
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,6 +69,30 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -80,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: idle_Frog_0
+      name: FrogIdle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -88,41 +112,41 @@ TextureImporter:
         width: 200
         height: 199
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7689c9dbc65b25a44b797b3b34ffc54e
-      internalID: 319264400
+      spriteID: 2bf32aa55ef2198429dd4174f468afbf
+      internalID: 365822130
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle_Frog_1
+      name: FrogIdle_1
       rect:
         serializedVersion: 2
-        x: 199
+        x: 200
         y: 0
         width: 200
         height: 199
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d025981782d0464ab3bc54d984daf9a
-      internalID: 1726688444
+      spriteID: 071a64bee3b7e52459b14d6e5ee236c5
+      internalID: 189384738
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle_Frog_2
+      name: FrogIdle_2
       rect:
         serializedVersion: 2
         x: 400
@@ -130,20 +154,20 @@ TextureImporter:
         width: 200
         height: 199
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a33e35fafc46a24c99ca12504fb653a
-      internalID: 1967670813
+      spriteID: f8f6abdbee374484ebbe2d0a1a96b2c6
+      internalID: 2085300778
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle_Frog_3
+      name: FrogIdle_3
       rect:
         serializedVersion: 2
         x: 600
@@ -151,14 +175,14 @@ TextureImporter:
         width: 200
         height: 199
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02e36a292ffeb23479ca30c297a5e66c
-      internalID: 1496759904
+      spriteID: 034b4b950aa7f2546a9f48df1012318d
+      internalID: -2091145281
       vertices: []
       indices: 
       edges: []
@@ -174,10 +198,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      idle_Frog_2: 1967670813
-      idle_Frog_0: 319264400
-      idle_Frog_1: 1726688444
-      idle_Frog_3: 1496759904
+      FrogIdle_1: 189384738
+      FrogIdle_0: 365822130
+      FrogIdle_3: -2091145281
+      FrogIdle_2: 2085300778
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
