@@ -36,17 +36,28 @@ public class FrogController : MonoBehaviour
         Debug.Log("Horizontal : " + horizontalInput);
         
 
-        if(Input.GetKeyDown(KeyCode.Space)){
+        if(Input.GetKeyDown(KeyCode.Space) && isjumping){
             float jumpVelocity=50f;
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0,jumpVelocity),ForceMode2D.Impulse);
             isjumping=false;
         }
     }
     
-    
+    void OnCollisionEnter2D(Collision2D other){
+        if(other.gameObject.tag== "platform" && isjumping==false){
+            isjumping = true;
+        }
     }
 
-  
+    void Animation(){
+        if(isjumping==false){
+            animator.SetBool("animjump",true);
+        }
+        if(isjumping==true){
+            animator.SetBool("animjump",false);
+        }
+        
+    }
 
    
-
+}
