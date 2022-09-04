@@ -49,7 +49,7 @@ public class FrogController : MonoBehaviour
       
         if (Input.GetKey("space") && isjumping && canJump)
         {
-            jumpValue+=0.1f;
+            jumpValue+=0.03f;
         }
 
         if (Input.GetKeyDown("space") && isjumping && canJump)
