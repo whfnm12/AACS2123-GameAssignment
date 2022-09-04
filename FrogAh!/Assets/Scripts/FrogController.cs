@@ -9,17 +9,21 @@ public class FrogController : MonoBehaviour
 
     private float horizontalInput;
     private float verticalInput;
-    bool isjumping;
-  
+    public bool isjumping;
+    
+    public LayerMask groundMask;
+    public bool canJump=true;
+    public float jumpValue=0.0f;
+
     [SerializeField] private LayerMask platformlayermask;
-    private Rigidbody2D Rigidbody2D;
-    private BoxCollider2D boxCollider2D;
+    private Rigidbody2D rb;
+    private CircleCollider2D CircleCollider2D;
     
     // Start is called before the first frame update
     void Start()
     {
-        Rigidbody2D=transform.GetComponent<Rigidbody2D>();
-        boxCollider2D=transform.GetComponent<BoxCollider2D>();
+        rb=transform.GetComponent<Rigidbody2D>();
+        CircleCollider2D=transform.GetComponent<CircleCollider2D>();
         isjumping=true;
 
     }
@@ -35,29 +39,50 @@ public class FrogController : MonoBehaviour
 
         Debug.Log("Horizontal : " + horizontalInput);
         
+        if ((jumpValue==0.0f || jumpValue<15f) && isjumping)
+        {
+            rb.velocity=new Vector2(horizontalInput*movespeed,rb.velocity.y);
+        }
 
-        if(Input.GetKeyDown(KeyCode.Space) && isjumping){
-            float jumpVelocity=50f;
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(0,jumpVelocity),ForceMode2D.Impulse);
-            isjumping=false;
+        isjumping=Physics2D.OverlapBox(new Vector2(gameObject.transform.position.x,gameObject.transform.position.y-0.5f),new Vector2(0.9f,0.4f),0f,groundMask);
+       
+      
+        if (Input.GetKey("space") && isjumping && canJump)
+        {
+            jumpValue+=0.1f;
         }
-    }
-    
-    void OnCollisionEnter2D(Collision2D other){
-        if(other.gameObject.tag== "platform" && isjumping==false){
-            isjumping = true;
-        }
-    }
 
-    void Animation(){
-        if(isjumping==false){
-            animator.SetBool("animjump",true);
+        if (Input.GetKeyDown("space") && isjumping && canJump)
+        {
+            rb.velocity=new Vector2(0.0f,rb.velocity.y);
         }
-        if(isjumping==true){
-            animator.SetBool("animjump",false);
+
+        if (jumpValue>=13f && isjumping)
+        {
+            float tempx=horizontalInput*movespeed;
+            float tempy=jumpValue;
+            rb.velocity=new Vector2(tempx,tempy);
+            Invoke("ResetJump",0.2f);
+            }
+
+        if (Input.GetKeyUp("space"))
+        {
+            if (isjumping)
+            {
+                rb.velocity=new Vector2(horizontalInput*movespeed,jumpValue*2);
+                jumpValue=0.0f;
+            }
+            canJump=true;
         }
         
     }
 
+    void ResetJump(){
+        canJump=false;
+        jumpValue=0;
+    }
+    
+   
+    
    
 }
