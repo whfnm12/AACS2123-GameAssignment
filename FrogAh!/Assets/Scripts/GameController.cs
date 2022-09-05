@@ -10,16 +10,16 @@ public class GameController : MonoBehaviour
     
     public TextMeshProUGUI text;
     public int score = 0;
-    public static int gemcount=0;
+    
     
     // Start is called before the first frame update
     void Start()
     {
          
     }
-    public void changeScore (int gemValue)
+    public void changeScore (int coinValue)
         {
-        score += gemValue;
+        score += coinValue;
         text.text = score.ToString();
         }
     // Update is called once per frame
