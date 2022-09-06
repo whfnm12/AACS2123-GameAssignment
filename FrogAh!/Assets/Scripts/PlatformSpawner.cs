@@ -28,30 +28,30 @@ public class PlatformSpawner : MonoBehaviour
 
         if (randomNum == 1)
         {
-            Instantiate(Ground1,new Vector3(transform.position.x+3,-4.88f,0), Quaternion.identity);
+            Instantiate(Ground1,new Vector3(transform.position.x+3,1f,0), Quaternion.identity);
         }
 
         if (randomNum == 2)
         {
-            Instantiate(Ground2,new Vector3(transform.position.x+3,-3.88f,0), Quaternion.identity);
+            Instantiate(Ground2,new Vector3(transform.position.x+3,2f,0), Quaternion.identity);
         }
 
         if (randomNum == 3)
         {
-            Instantiate(Ground3,new Vector3(transform.position.x+3,-5.88f,0), Quaternion.identity);
+            Instantiate(Ground3,new Vector3(transform.position.x+3,3f,0), Quaternion.identity);
         }
 
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
-        if (collision.gameObject.CompareTag("Platform"))
+        if (collision.gameObject.CompareTag("platform"))
         {
             hasGround=true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision){
-        if (collision.gameObject.CompareTag("Platform"))
+        if (collision.gameObject.CompareTag("platform"))
         {
             hasGround=false;
         }
