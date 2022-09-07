@@ -10,15 +10,12 @@ public class bricks : MonoBehaviour
         rb=GetComponent<Rigidbody2D>();
     }
    
-    void OnCollisionEnter2D(Collision2D col){
-        if (col.gameObject.name.Equals("Frog")){}
-        {
-            Invoke("DropPlatform",2.0f);
-            Destroy(gameObject,3f);
-        }
-    }
+    IEnumerator OnCollisionEnter (Collision coll) {
+ 
+     yield return new WaitForSeconds(2);//wait x amount of seconds
+     Destroy(gameObject);
+ 
+ }
 
-    void DropPlatform(){
-        rb.isKinematic=false;
-    }
+    
 }

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class FrogController : MonoBehaviour
 {   
-    public float movespeed = 1;
+    public float movespeed;
+    public float jumpVelocity;
     public Animator animator;
 
     private float horizontalInput;
@@ -12,10 +13,7 @@ public class FrogController : MonoBehaviour
     public bool isjumping;
     
     public LayerMask groundMask;
-    public bool canJump=true;
-    public float jumpValue=0.0f;
-
-    [SerializeField] private LayerMask platformlayermask;
+    
     private Rigidbody2D rb;
     private CircleCollider2D CircleCollider2D;
     
@@ -31,56 +29,31 @@ public class FrogController : MonoBehaviour
     // Update is called once per frame
      void Update()//loop
     {   
-        horizontalInput = Input.GetAxis("Horizontal");
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+
         
         animator.SetFloat("Horizontal",horizontalInput);
 
-        transform.Translate(new Vector3(horizontalInput, verticalInput, 0) * movespeed * Time.deltaTime);
+        transform.Translate(new Vector3(horizontalInput, 0, 0) * movespeed * Time.deltaTime);
 
         Debug.Log("Horizontal : " + horizontalInput);
         
-        if ((jumpValue==0.0f || jumpValue<15f) && isjumping)
+    
+        isjumping=Physics2D.OverlapBox(new Vector2(gameObject.transform.position.x,gameObject.transform.position.y-0.5f),new Vector2(0.9f,0.4f),0f,groundMask);  
+        
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("w") || Input.GetKey("up"))
         {
-            rb.velocity=new Vector2(horizontalInput*movespeed,rb.velocity.y);
-        }
-
-        isjumping=Physics2D.OverlapBox(new Vector2(gameObject.transform.position.x,gameObject.transform.position.y-0.5f),new Vector2(0.9f,0.4f),0f,groundMask);
-       
-      
-        if (Input.GetKey("space") && isjumping && canJump)
-        {
-            jumpValue+=0.03f;
-        }
-
-        if (Input.GetKeyDown("space") && isjumping && canJump)
-        {
-            rb.velocity=new Vector2(0.0f,rb.velocity.y);
-        }
-
-        if (jumpValue>=13f && isjumping)
-        {
-            float tempx=horizontalInput*movespeed;
-            float tempy=jumpValue;
-            rb.velocity=new Vector2(tempx,tempy);
-            Invoke("ResetJump",0.2f);
-            }
-
-        if (Input.GetKeyUp("space"))
-        {
-            if (isjumping)
+            if(isjumping==true)
             {
-                rb.velocity=new Vector2(horizontalInput*movespeed,jumpValue*2);
-                jumpValue=0.0f;
+                rb.velocity = Vector2.up*jumpVelocity; 
             }
-            canJump=true;
+                           
+    
         }
         
     }
 
-    void ResetJump(){
-        canJump=false;
-        jumpValue=0;
-    }
+   
     
    
     
