@@ -4,56 +4,62 @@ using UnityEngine;
 
 public class PlatformSpawner : MonoBehaviour
 {
-    public GameObject Ground1,Ground2,Ground3;
-    bool hasGround = true;
+   public GameObject thePlatform;
+   public Transform generationPoint;
+   public float distanceBetween;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   private float platformWidth;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (!hasGround)
+    public float distanceBetweenMin;
+    public float distanceBetweenMax;
+
+    public GameObject[] thePlatforms;
+    private int platformSelector;
+    private float[] platformWidths;
+
+    private float minWidth;
+    public Transform maxWidthPoint;
+    private float maxWidth;
+    public float maxWidthChange;
+    private float widthChange;
+  
+
+    void Start () {
+        platformWidths= new float[thePlatforms.Length];
+
+        for (int i = 0; i < thePlatforms.Length; i++)
         {
-            SpawnGround();
-            hasGround=true;
-        }
-    }
-
-    public void SpawnGround(){
-        int randomNum = Random.Range(1,4);
-
-        if (randomNum == 1)
-        {
-            Instantiate(Ground1,new Vector3(transform.position.x+3,1f,0), Quaternion.identity);
-        }
-
-        if (randomNum == 2)
-        {
-            Instantiate(Ground2,new Vector3(transform.position.x+3,2f,0), Quaternion.identity);
+            platformWidths[i] = thePlatforms[i].GetComponent<BoxCollider2D>().size.y;
+                
         }
 
-        if (randomNum == 3)
-        {
-            Instantiate(Ground3,new Vector3(transform.position.x+3,3f,0), Quaternion.identity);
-        }
+        minWidth=transform.position.x;
+        maxWidth=maxWidthPoint.position.x;
 
     }
-
-    private void OnTriggerEnter2D(Collider2D collision){
-        if (collision.gameObject.CompareTag("platform"))
+    
+    //funktion for spawn
+   void Update(){
+        if (transform.position.y<generationPoint.position.y)
         {
-            hasGround=true;
-        }
-    }
 
-    private void OnTriggerExit2D(Collider2D collision){
-        if (collision.gameObject.CompareTag("platform"))
-        {
-            hasGround=false;
+            distanceBetween = Random.Range(distanceBetweenMin,distanceBetweenMax);
+
+            platformSelector = Random.Range(0,thePlatforms.Length);
+
+            widthChange= transform.position.x + Random.Range(maxWidthChange,-maxWidthChange);
+
+            if (widthChange>maxWidth)
+            {
+                widthChange=maxWidth;
+            }else if(widthChange<minWidth){
+                widthChange=minWidth;
+            }
+           
+
+            transform.position = new Vector3(widthChange,transform.position.y + distanceBetween,transform.position.z);
+
+            Instantiate(thePlatforms[platformSelector],transform.position, transform.rotation);
         }
-    }
+   }
 }

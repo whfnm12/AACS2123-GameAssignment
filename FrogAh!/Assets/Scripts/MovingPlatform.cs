@@ -8,6 +8,7 @@ public class MovingPlatform : MonoBehaviour
     public Transform pos1,pos2;
     public float speed;
     public Transform startingPos;
+    public GameObject movingplatform;
     
     Vector3 nextPos;
 
@@ -31,7 +32,14 @@ public class MovingPlatform : MonoBehaviour
             nextPos=pos1.position;
         }
 
-        transform.position = Vector3.MoveTowards(transform.position,nextPos,speed*Time.deltaTime);
+        movingplatform=GameObject.FindWithTag("movingplatform");
+
+        if (movingplatform!=null)
+        {
+            transform.position = Vector3.MoveTowards(transform.position,nextPos,speed*Time.deltaTime);
+
+        }
+
 
         
     }
