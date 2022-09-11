@@ -4,7 +4,7 @@ using UnityEngine;
 using Unity.Mathematics;
 
 public class BackgroundLoop : MonoBehaviour
-{
+{   
     public Transform target;
 
     public Transform bg1;
