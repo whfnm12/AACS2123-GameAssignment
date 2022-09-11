@@ -20,6 +20,6 @@ public class boundaries : MonoBehaviour
         xWidthP=(Screen.width-34)/100;
         yHeightP=(Screen.height-54)/100;
 
-        transform.position=new Vector3(Mathf.Clamp(transform.position.x,-xWidthP+2,xWidthP+1),Mathf.Clamp(transform.position.y,-yHeightP-100,yHeightP+100),0);
+        transform.position=new Vector3(Mathf.Clamp(transform.position.x,-xWidthP+2,xWidthP+1),Mathf.Clamp(transform.position.y,-yHeightP-10000,yHeightP+10000),0);
     }
 }

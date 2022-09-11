@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bricks : MonoBehaviour
+public class DroppingPlatform : MonoBehaviour
 {
     Rigidbody2D rb;
 
@@ -10,12 +10,19 @@ public class bricks : MonoBehaviour
         rb=GetComponent<Rigidbody2D>();
     }
    
-    IEnumerator OnCollisionEnter (Collision coll) {
+    void OnCollisionEnter2D (Collision2D col) {
  
-     yield return new WaitForSeconds(2);//wait x amount of seconds
-     Destroy(gameObject);
- 
+        if (col.gameObject.tag.Equals("Player"))
+        {
+            PlatformManager.Instance.StartCoroutine("SpawnPlatform",new Vector2(transform.position.x,transform.position.y));
+            Invoke("DropPlatform",2f);
+            Destroy(gameObject,2f);
+            
+        }
  }
+void DropPlatform(){
+            gameObject.SetActive(false);
+        }
 
     
 }
