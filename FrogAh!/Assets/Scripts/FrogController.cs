@@ -16,6 +16,8 @@ public class FrogController : MonoBehaviour
     
     private Rigidbody2D rb;
     private CircleCollider2D CircleCollider2D;
+
+    public GameManager theGameManager;
     
     // Start is called before the first frame update
     void Start()
@@ -51,6 +53,13 @@ public class FrogController : MonoBehaviour
     
         }
         
+    }
+
+    void OnCollisionEnter2D(Collision2D other){
+        if (other.gameObject.tag == "KillBox")
+        {
+            theGameManager.RestartGame();
+        }
     }
 
    
