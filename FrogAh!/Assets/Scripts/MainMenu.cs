@@ -12,12 +12,12 @@ public class MainMenu : MonoBehaviour
 
     public void Shop()
     {
-
+        SceneManager.LoadScene("Shop");
     }
 
     public void Achievement()
     {
-
+        SceneManager.LoadScene("Achievement");
     }
 
     public void QuitGame()
