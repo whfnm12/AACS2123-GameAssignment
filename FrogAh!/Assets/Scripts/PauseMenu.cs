@@ -45,9 +45,26 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void QuitGame(){
+    public void QuitGame()
+    {
         Debug.Log("Quitting Game...");
         Application.Quit();
     }
-    
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void muteToggle(bool muted)
+    {
+        if(muted)
+        {
+            AudioListener.volume = 0;
+        }
+        else
+        {
+            AudioListener.volume = 1;
+        }
+    }
 }

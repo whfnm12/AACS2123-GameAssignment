@@ -46,6 +46,9 @@ public class GameController : MonoBehaviour
         }
         hiScore.text = "Best: " + hiScoreCount;
     }
+
+   
+
     
 
     
