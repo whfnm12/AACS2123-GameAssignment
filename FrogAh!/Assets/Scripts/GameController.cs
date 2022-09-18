@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         if (PlayerPrefs.GetInt("HighScore") !=null)
+         if (PlayerPrefs.GetInt("HighScore") != null)
          {
             hiScoreCount=PlayerPrefs.GetFloat("HighScore");
          }
