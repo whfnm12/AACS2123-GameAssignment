@@ -3,68 +3,80 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FrogController : MonoBehaviour
-{   
-    public float movespeed;
-    public float jumpVelocity;
-    public Animator animator;
-
-    private float horizontalInput;
-    private float verticalInput;
-    public bool isjumping;
-    
-    public LayerMask groundMask;
-    
-    private Rigidbody2D rb;
-    private CircleCollider2D CircleCollider2D;
-
-    public GameManager theGameManager;
-    
+{
     // Start is called before the first frame update
+    private float moveInput;
+    private Rigidbody2D rb;
+    public PolygonCollider2D coll;
+    [SerializeField] float jumpTime;
+    [SerializeField] private LayerMask jumpableGround;
+    [SerializeField] int jumpForce;
+    [SerializeField] float fallMultiplier;
+    [SerializeField] float jumpMultiplier;
+
+    Vector2 vecGravity;
+
+    bool isJumping;
+    float jumpCounter;
+
     void Start()
     {
-        rb=transform.GetComponent<Rigidbody2D>();
-        CircleCollider2D=transform.GetComponent<CircleCollider2D>();
-        isjumping=true;
-
+        vecGravity = new Vector2(0, -Physics2D.gravity.y);
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        coll = GetComponent<PolygonCollider2D>();
     }
 
-    // Update is called once per frame
-     void Update()//loop
-    {   
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-
-        
-        animator.SetFloat("Horizontal",horizontalInput);
-
-        transform.Translate(new Vector3(horizontalInput, 0, 0) * movespeed * Time.deltaTime);
-
-        Debug.Log("Horizontal : " + horizontalInput);
-        
-    
-        isjumping=Physics2D.OverlapBox(new Vector2(gameObject.transform.position.x,gameObject.transform.position.y-0.5f),new Vector2(0.9f,0.4f),0f,groundMask);  
-        
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("w") || Input.GetKey("up"))
+    private void Update()
+    {
+        moveInput = Input.GetAxisRaw("Horizontal");
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
         {
-            if(isjumping==true)
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            isJumping = true;
+            jumpCounter = 0;
+        }
+
+        if (rb.velocity.y > 0 && isJumping)
+        {
+            jumpCounter += Time.deltaTime;
+            if (jumpCounter > jumpTime)
             {
-                rb.velocity = Vector2.up*jumpVelocity; 
+                isJumping = false;
             }
-                           
-    
-        }
-        
-    }
+            float t = jumpCounter / jumpTime;
+            float currentJumpM = jumpMultiplier;
 
-    void OnCollisionEnter2D(Collision2D other){
-        if (other.gameObject.tag == "KillBox")
+            if (t > 0.5f)
+            {
+                currentJumpM = jumpMultiplier * (1 - t);
+            }
+            rb.velocity += vecGravity * jumpMultiplier * Time.deltaTime;
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space))
         {
-            theGameManager.RestartGame();
+            isJumping = false;
+            jumpCounter = 0;
+
+            if (rb.velocity.y > 0)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.6f);
+            }
         }
+
+        if (rb.velocity.y < 0)
+        {
+
+            rb.velocity -= vecGravity * fallMultiplier * Time.deltaTime;
+
+        }
+
+
     }
 
-   
-    
-   
-    
-   
+    bool isGrounded()
+    {
+        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
+
+    }
 }
