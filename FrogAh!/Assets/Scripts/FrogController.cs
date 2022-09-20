@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FrogController : MonoBehaviour
+public class ScriptForJump : MonoBehaviour
 {
     // Start is called before the first frame update
     private float moveInput;
@@ -13,7 +13,7 @@ public class FrogController : MonoBehaviour
     [SerializeField] int jumpForce;
     [SerializeField] float fallMultiplier;
     [SerializeField] float jumpMultiplier;
-
+    [SerializeField] float speed;
     Vector2 vecGravity;
 
     bool isJumping;
@@ -28,7 +28,8 @@ public class FrogController : MonoBehaviour
 
     private void Update()
     {
-        moveInput = Input.GetAxisRaw("Horizontal");
+        rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rb.velocity.y);
+        Debug.Log(moveInput);
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
@@ -79,4 +80,8 @@ public class FrogController : MonoBehaviour
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
 
     }
+
+
+
+
 }
