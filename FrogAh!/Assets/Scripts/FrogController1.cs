@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*public class FrogController : MonoBehaviour
+public class FrogController1 : MonoBehaviour
 {   
     public float movespeed;
     public float jumpVelocity;
@@ -67,4 +67,4 @@ using UnityEngine;
    
     
    
-}*/
+}
