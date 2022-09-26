@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FrogController1 : MonoBehaviour
 {   
@@ -18,6 +19,11 @@ public class FrogController1 : MonoBehaviour
     private CircleCollider2D CircleCollider2D;
 
     public GameManager theGameManager;
+    public int lives;
+    public GameObject live1;
+    public GameObject live2;
+    public GameObject live3;
+
     
     // Start is called before the first frame update
     void Start()
@@ -25,6 +31,9 @@ public class FrogController1 : MonoBehaviour
         rb=transform.GetComponent<Rigidbody2D>();
         CircleCollider2D=transform.GetComponent<CircleCollider2D>();
         isjumping=true;
+        live1= GameObject.Find("heart1");
+        live2= GameObject.Find("heart2");
+        live3= GameObject.Find("heart3");
 
     }
 
@@ -49,17 +58,37 @@ public class FrogController1 : MonoBehaviour
             {
                 rb.velocity = Vector2.up*jumpVelocity; 
             }
-                           
-    
         }
+
+        if (lives==2)
+        {
+            live1.gameObject.SetActive(false);
+        }
+
+        if (lives==1)
+        {
+            live2.gameObject.SetActive(false);
+        }
+
+        
         
     }
 
-    void OnCollisionEnter2D(Collision2D other){
-        if (other.gameObject.tag == "KillBox")
-        {
+    IEnumerator OnCollisionEnter2D(Collision2D other){
+        if (other.gameObject.tag.Equals("KillBox"))
+        {   
+            
+            yield return new WaitForSeconds(0.05f);
+            rb.gravityScale=5f;
             theGameManager.RestartGame();
+            lives-=1;
         }
+        if (lives<=0)
+        {
+            live3.gameObject.SetActive(false);
+            SceneManager.LoadScene("Game Over");
+        }
+        
     }
 
    

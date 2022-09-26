@@ -17,14 +17,19 @@ public class BackgroundLoop : MonoBehaviour
     public Transform bg7;
     public Transform bg8;
     private float size;
+    private Rigidbody2D rb;
 
     void Start(){
         size=bg1.GetComponent<BoxCollider2D>().size.y;
+        rb=gameObject.GetComponent<Rigidbody2D>();
+
+        
     }
 
-    void FixedUpdate(){
+    void Update(){
         Vector3 targetPos = new Vector3(target.position.x,target.position.y,transform.position.z);
-
+         
+       
         transform.position=Vector3.Lerp(transform.position,targetPos,0.2f); 
 
         if(transform.position.y >= bg2.position.y){
@@ -53,10 +58,15 @@ public class BackgroundLoop : MonoBehaviour
 
         if(transform.position.y >= bg8.position.y){
             if (gc.score >=75 && gc.score<=100)
-            {
+            {   
                 bg7.position = new Vector3(bg7.position.x, bg8.position.y + 16.5f  ,bg7.position.z);
                 SwitchBG4();
             }
+        }
+
+        if (target.position.y>=185)
+        {
+            rb.gravityScale=2.5f;
         }
     }
 

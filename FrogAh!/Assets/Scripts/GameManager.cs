@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator RestartGameCo(){
         thePlayer.gameObject.SetActive(false);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.75f);
         thePlayer.transform.position=playerStartPoint;
         platformGenerator.position=platformStartPoint;
         thePlayer.gameObject.SetActive(true);
