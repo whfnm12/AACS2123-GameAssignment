@@ -20,7 +20,7 @@ public class PlatformSpawner : MonoBehaviour
     private float minWidth;
     public Transform maxWidthPoint;
     private float maxWidth;
-    public float maxWidthChange;
+    public int maxWidthChange;
     private float widthChange;
   
 
@@ -30,7 +30,7 @@ public class PlatformSpawner : MonoBehaviour
         for (int i = 0; i < thePlatforms.Length; i++)
         {
             platformWidths[i] = thePlatforms[i].GetComponent<BoxCollider2D>().size.y;
-                
+           
         }
 
         minWidth=transform.position.x;
@@ -42,12 +42,15 @@ public class PlatformSpawner : MonoBehaviour
    void Update(){
         if (transform.position.y<generationPoint.position.y)
         {
-
             distanceBetween = Random.Range(distanceBetweenMin,distanceBetweenMax);
 
             platformSelector = Random.Range(0,thePlatforms.Length);
 
-            widthChange= transform.position.x + Random.Range(maxWidthChange,-maxWidthChange);
+            float j=Random.Range(-2,2);
+
+            float i= Random.Range(-1,1);
+
+            widthChange= transform.position.x +j+i +Random.Range(-2,5);
 
             if (widthChange>maxWidth)
             {
@@ -60,6 +63,7 @@ public class PlatformSpawner : MonoBehaviour
             transform.position = new Vector3(widthChange,transform.position.y + distanceBetween,transform.position.z);
 
             Instantiate(thePlatforms[platformSelector],transform.position, transform.rotation);
+            
         }
    }
 }

@@ -36,25 +36,25 @@ public class BackgroundLoop : MonoBehaviour
         }
 
         if(transform.position.y >= bg4.position.y){
-            if (gc.score >= 20 && gc.score <50)
+            if (gc.score >= 20 && gc.score <40)
             {
-                bg3.position = new Vector3(bg3.position.x, bg4.position.y + 23,bg3.position.z);
+                bg3.position = new Vector3(bg3.position.x, bg4.position.y + 16.5f,bg3.position.z);
                 SwitchBG2();
             }
         }
 
         if(transform.position.y >= bg6.position.y){
-            if (gc.score >=50 && gc.score <70)
+            if (gc.score >=40 && gc.score <60)
             {
-                bg5.position = new Vector3(bg5.position.x, bg6.position.y + 23,bg5.position.z);
+                bg5.position = new Vector3(bg5.position.x, bg6.position.y + 16.5f,bg5.position.z);
                 SwitchBG3();
             }
         }
 
         if(transform.position.y >= bg8.position.y){
-            if (gc.score >=70 && gc.score<=100)
+            if (gc.score >=75 && gc.score<=100)
             {
-                bg7.position = new Vector3(bg7.position.x, bg8.position.y + 23,bg7.position.z);
+                bg7.position = new Vector3(bg7.position.x, bg8.position.y + 16.5f  ,bg7.position.z);
                 SwitchBG4();
             }
         }
