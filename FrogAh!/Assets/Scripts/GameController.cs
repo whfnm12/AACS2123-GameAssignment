@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
     public TextMeshProUGUI text;
     public TextMeshProUGUI text1;
     public TextMeshProUGUI hiScore;
-    public static int coin = 0;
+    public static int coin;
     public int score = 0;
     public float hiScoreCount;
     

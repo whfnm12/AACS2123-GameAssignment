@@ -20,7 +20,7 @@ public class FrogController1 : MonoBehaviour
 
     public GameManager theGameManager;
     
-    public static int lives=5;
+    public static int lives=3;
     public GameObject live1;
     public GameObject live2;
     public GameObject live3;
@@ -63,12 +63,12 @@ public class FrogController1 : MonoBehaviour
             }
         }
 
-        if (lives>=3&&lives<=4)
+        if (lives<=2)
         {
             live1.gameObject.SetActive(false);
         }
 
-        if (lives>=1&&lives<=2)
+        if (lives<=1)
         {
             live2.gameObject.SetActive(false);
         }
