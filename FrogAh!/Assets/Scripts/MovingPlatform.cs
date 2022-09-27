@@ -37,22 +37,12 @@ public class MovingPlatform : MonoBehaviour
         if (movingplatform!=null)
         {
             transform.position = Vector3.MoveTowards(transform.position,nextPos,speed*Time.deltaTime);
-
+            
         }
 
 
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision){
-        
-        collision.collider.transform.SetParent(transform);
-     
-        
-    }
-
-    private void OnCollisionExit2D(Collision2D collision){
-        collision.collider.transform.SetParent(null);
-
-    }
+    
 }

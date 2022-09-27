@@ -19,10 +19,13 @@ public class FrogController1 : MonoBehaviour
     private CircleCollider2D CircleCollider2D;
 
     public GameManager theGameManager;
-    public int lives;
+    
+    public static int lives=5;
     public GameObject live1;
     public GameObject live2;
     public GameObject live3;
+     public FrogController thePlayer;
+    
 
     
     // Start is called before the first frame update
@@ -60,12 +63,12 @@ public class FrogController1 : MonoBehaviour
             }
         }
 
-        if (lives==2)
+        if (lives>=3&&lives<=4)
         {
             live1.gameObject.SetActive(false);
         }
 
-        if (lives==1)
+        if (lives>=1&&lives<=2)
         {
             live2.gameObject.SetActive(false);
         }
@@ -74,15 +77,21 @@ public class FrogController1 : MonoBehaviour
         
     }
 
-    IEnumerator OnCollisionEnter2D(Collision2D other){
+    IEnumerator OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.tag.Equals("KillBox"))
         {   
+            lives-=1; 
+            yield return new WaitForSeconds(0.1f);
+            Scene scene = SceneManager.GetActiveScene(); 
+            SceneManager.LoadScene("TimeMode");
+            thePlayer.gameObject.SetActive(false);
+            yield return new WaitForSeconds(1f);
+            thePlayer.gameObject.SetActive(true);
             
-            yield return new WaitForSeconds(0.05f);
-            rb.gravityScale=5f;
-            theGameManager.RestartGame();
-            lives-=1;
+            
+            
         }
+  
         if (lives<=0)
         {
             live3.gameObject.SetActive(false);

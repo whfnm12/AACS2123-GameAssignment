@@ -15,7 +15,7 @@ public class DroppingPlatform : MonoBehaviour
         if (col.gameObject.tag.Equals("Player"))
         {
             PlatformManager.Instance.StartCoroutine("SpawnPlatform",new Vector2(transform.position.x,transform.position.y));
-            Invoke("DropPlatform",2f);
+            Invoke("DropPlatform",1f);
             Destroy(gameObject,2f);
             
         }

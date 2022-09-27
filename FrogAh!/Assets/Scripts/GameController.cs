@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
     public TextMeshProUGUI text;
     public TextMeshProUGUI text1;
     public TextMeshProUGUI hiScore;
-    public int coin = 0;
+    public static int coin = 0;
     public int score = 0;
     public float hiScoreCount;
     
@@ -38,7 +38,7 @@ public class GameController : MonoBehaviour
         }
     // Update is called once per frame
     void Update()
-    {
+    {   
        if (hiScoreCount<score)
         {
             hiScoreCount=score;
