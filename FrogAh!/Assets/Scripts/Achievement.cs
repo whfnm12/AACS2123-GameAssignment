@@ -6,14 +6,14 @@ using UnityEngine.UI;
 public class Achievement : MonoBehaviour
 {
     private Image img;
-    
-    public enum AchievementTypes { babyJump, dummy2, dummy3 };
-    
+
+    public enum AchievementTypes { babyJump, kidJump, adultJump };
+
     [SerializeField] private AchievementTypes achievementType;
     public AchievementTypes _achievementType { get { return achievementType; } }
 
-    [SerializeField] private string TrophyName;
-    [SerializeField] private string TrophyDesc;
+    [SerializeField] private string trophyNameText;
+    [SerializeField] private string trophyDescText;
 
 
     public bool isUnlocked { get; private set; }
@@ -44,6 +44,6 @@ public class Achievement : MonoBehaviour
 
     public void OnTouchTrophy()
     {
-        AchievementManager.Instance.UpdateTrophyTextsUI(TrophyName, TrophyDesc);
+        AchievementManager.Instance.UpdateTrophyTextsUI(trophyNameText, trophyDescText);
     }
 }
