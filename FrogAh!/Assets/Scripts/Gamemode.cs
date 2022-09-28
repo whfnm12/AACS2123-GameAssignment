@@ -7,12 +7,12 @@ public class Gamemode : MonoBehaviour
 {
    public void EndlessMode()
    {
-       SceneManager.LoadScene("Endless Mode"); //Goes to Endless mode 
+       SceneManager.LoadScene("EndlessMode"); //Goes to Endless mode 
    }
 
    public void TimeMode()
    {
-        SceneManager.LoadScene("Time Mode");    //Goes to Time mode
+        SceneManager.LoadScene("TimeMode");    //Goes to Time mode
    }
 
    public void Back()

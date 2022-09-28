@@ -27,7 +27,9 @@ public class FrogController1 : MonoBehaviour
     public FrogController thePlayer;
     
     public AudioClip jumpsound;
+    public AudioClip gameoversound;
     static AudioSource audiosrc;
+    public GameObject AudioManager;
     
     // Start is called before the first frame update
     void Start()
@@ -35,6 +37,7 @@ public class FrogController1 : MonoBehaviour
         rb=transform.GetComponent<Rigidbody2D>();
         CircleCollider2D=transform.GetComponent<CircleCollider2D>();
         audiosrc=GetComponent<AudioSource>();
+        AudioManager=GameObject.FindGameObjectWithTag("GameAudio");
         isjumping=true;
         live1= GameObject.Find("heart1");
         live2= GameObject.Find("heart2");
@@ -60,10 +63,9 @@ public class FrogController1 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if(isjumping==true)
-            {audiosrc.PlayOneShot(jumpsound);
+            {
+                audiosrc.PlayOneShot(jumpsound);
                 rb.velocity = Vector2.up*jumpVelocity; 
-                
-               
             }
         }
 
@@ -77,8 +79,14 @@ public class FrogController1 : MonoBehaviour
             live2.gameObject.SetActive(false);
         }
 
-        
-        
+         if (lives<=0)
+        {
+             
+            live3.gameObject.SetActive(false);
+            Destroy(GameObject.Find("AudioManager"));
+            audiosrc.PlayOneShot(gameoversound);
+            SceneManager.LoadScene("Game Over");
+        }
     }
 
     IEnumerator OnTriggerEnter2D(Collider2D other){
@@ -95,13 +103,10 @@ public class FrogController1 : MonoBehaviour
             
             
         }
-  
         if (lives<=0)
         {
-            live3.gameObject.SetActive(false);
-            SceneManager.LoadScene("Game Over");
+
         }
-        
     }
 
    

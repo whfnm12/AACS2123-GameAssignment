@@ -37,7 +37,7 @@ public class BackgroundLoop : MonoBehaviour
         transform.position=Vector3.Lerp(transform.position,targetPos,0.2f); 
 
         if(transform.position.y >= bg2.position.y){
-            if (gc.score <15)
+            if (gc.score <20)
             {
                 bg1.position = new Vector3(bg1.position.x, bg2.position.y + 23,bg1.position.z);
                 SwitchBG();
@@ -45,7 +45,7 @@ public class BackgroundLoop : MonoBehaviour
         }
 
         if(transform.position.y >= bg4.position.y){
-            if (gc.score >= 15 && gc.score <40)
+            if (gc.score >= 20 && gc.score <40)
             {
                 bg3.position = new Vector3(bg3.position.x, bg4.position.y + 16.5f,bg3.position.z);
                 SwitchBG2();
