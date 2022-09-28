@@ -26,16 +26,17 @@ public class GameController : MonoBehaviour
          }
     }
     public void changeCoin (int coinValue)
-        {
+    {
         coin += coinValue;
         text.text = coin.ToString();
-        }
+    }
 
     public void changeScore (int scoreValue)
-        {
+    {
         score += scoreValue;
         text1.text = score.ToString();
-        }
+
+    }
     // Update is called once per frame
     void Update()
     {   
@@ -47,7 +48,13 @@ public class GameController : MonoBehaviour
         hiScore.text = "Best: " + hiScoreCount;
     }
 
-   
+   public void activateAchievement()
+    {
+        if (hiScoreCount >= 1)
+        {
+            AchievementManager.Instance.UnlockAchievement(Achievement.AchievementTypes.babyJump);
+        }
+    }
 
     
 
