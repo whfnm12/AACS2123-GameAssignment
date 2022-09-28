@@ -37,8 +37,8 @@ public class AchievementManager : MonoBehaviour
 
     public void UpdateTrophyTextsUI(string TrophyName, string TrophyDesc)
     {
-        TrophyName.text = TrophyName;
-        TrophyDesc.text = TrophyDesc;
+        TrophyName = TrophyName;
+        TrophyDesc= TrophyDesc;
     }
 }
     
