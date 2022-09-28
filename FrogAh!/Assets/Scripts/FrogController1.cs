@@ -24,15 +24,17 @@ public class FrogController1 : MonoBehaviour
     public GameObject live1;
     public GameObject live2;
     public GameObject live3;
-     public FrogController thePlayer;
+    public FrogController thePlayer;
     
-
+    public AudioClip jumpsound;
+    static AudioSource audiosrc;
     
     // Start is called before the first frame update
     void Start()
     {
         rb=transform.GetComponent<Rigidbody2D>();
         CircleCollider2D=transform.GetComponent<CircleCollider2D>();
+        audiosrc=GetComponent<AudioSource>();
         isjumping=true;
         live1= GameObject.Find("heart1");
         live2= GameObject.Find("heart2");
@@ -55,11 +57,13 @@ public class FrogController1 : MonoBehaviour
     
         isjumping=Physics2D.OverlapBox(new Vector2(gameObject.transform.position.x,gameObject.transform.position.y-0.5f),new Vector2(0.9f,0.4f),0f,groundMask);  
         
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("w") || Input.GetKey("up"))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if(isjumping==true)
-            {
+            {audiosrc.PlayOneShot(jumpsound);
                 rb.velocity = Vector2.up*jumpVelocity; 
+                
+               
             }
         }
 
