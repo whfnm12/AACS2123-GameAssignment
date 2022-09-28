@@ -46,15 +46,17 @@ public class GameController : MonoBehaviour
             PlayerPrefs.SetFloat("HighScore",hiScoreCount);
         }
         hiScore.text = "Best: " + hiScoreCount;
+
+        ActivateAchievement();
     }
 
-   public void activateAchievement()
-    {
-        if (hiScoreCount >= 1)
-        {
-            AchievementManager.Instance.UnlockAchievement(Achievement.AchievementTypes.babyJump);
-        }
-    }
+   public void ActivateAchievement()
+   {
+       if (hiScoreCount >= 1)
+       {
+           AchievementManager.Instance.UnlockAchievement(Achievement.AchievementTypes.babyJump);
+       }
+   }
 
     
 

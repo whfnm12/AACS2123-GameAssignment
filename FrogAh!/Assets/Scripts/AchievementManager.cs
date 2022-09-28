@@ -1,15 +1,13 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class AchievementManager : MonoBehaviour
 {
     public static AchievementManager Instance;
 
-    [SerializeField] private TextMeshProUGUI TrophyName;
-    [SerializeField] private TextMeshProUGUI TrophyDesc;
+    [SerializeField] private TextMeshProUGUI trophyNameText;
+    [SerializeField] private TextMeshProUGUI trophyDescText;
 
     [SerializeField] private Achievement[] trophies;
 
@@ -30,15 +28,14 @@ public class AchievementManager : MonoBehaviour
         }
 
         if (!achievementToUnlock.isUnlocked)
-        {
             achievementToUnlock.UnlockThisAchievement();
-        }
+
     }
 
-    public void UpdateTrophyTextsUI(string TrophyName, string TrophyDesc)
+    public void UpdateTrophyTextsUI(string trophyName, string trophyDesc)
     {
-        TrophyName = TrophyName;
-        TrophyDesc= TrophyDesc;
+        trophyNameText.text = trophyName;
+        trophyDescText.text = trophyDesc;
     }
 }
     
