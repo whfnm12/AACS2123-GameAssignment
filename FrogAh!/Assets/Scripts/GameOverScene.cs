@@ -8,10 +8,7 @@ public class GameOverScene : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        if (SceneManager.GetActiveScene().name == "Game Over")
-         {
-             Destroy(GameObject.Find("AudioManager"));
-         }
+       
     }
 
     // Update is called once per frame

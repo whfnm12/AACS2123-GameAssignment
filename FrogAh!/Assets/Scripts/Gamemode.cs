@@ -12,7 +12,7 @@ public class Gamemode : MonoBehaviour
 
    public void TimeMode()
    {
-        SceneManager.LoadScene("Time Mode");    //Goes to Time mode
+        SceneManager.LoadScene("TimeMode");    //Goes to Time mode
    }
 
    public void Back()
