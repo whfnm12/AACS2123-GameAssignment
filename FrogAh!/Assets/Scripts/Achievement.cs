@@ -42,8 +42,8 @@ public class Achievement : MonoBehaviour
         CheckIfAchievementIsUnlocked();
     }
 
-    public void OnTouchTrophy()
-    {
-        AchievementManager.Instance.UpdateTrophyTextsUI(TrophyName, TrophyDesc);
-    }
+    //public void OnTouchTrophy()
+    //{
+    //    AchievementManager.Instance.UpdateTrophyTextsUI(TrophyName, TrophyDesc);
+    //}
 }
