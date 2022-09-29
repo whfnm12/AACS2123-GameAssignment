@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+
     public static bool GameIsPaused = false;
     // Start is called before the first frame update
     public GameObject pauseMenuUI;
@@ -58,7 +59,7 @@ public class PauseMenu : MonoBehaviour
 
     public void muteToggle(bool muted)
     {
-        if(muted)
+        if (muted)
         {
             AudioListener.volume = 0;
         }
@@ -67,4 +68,5 @@ public class PauseMenu : MonoBehaviour
             AudioListener.volume = 1;
         }
     }
+
 }
